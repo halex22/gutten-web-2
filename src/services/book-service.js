@@ -4,7 +4,6 @@ export default class BookService {
 
   constructor(currentPage=1) {
     this.currentPage = currentPage
-    
   }
 
   getBooksByPage(){
@@ -32,6 +31,8 @@ export default class BookService {
     this.currentPage --
     return this.getBooksByPage()
   }
+
+  
 
 }
 

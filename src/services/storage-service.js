@@ -4,25 +4,28 @@ export default class StorageService {
   constructor() {}
 
   saveBook(bookToSave){
+    console.log('here')
     const savedBooks = this.loadSavedBooks()
+    if (!!savedBooks?.find(book => bookToSave.id === book.id)) return
     if (savedBooks) {
-      savedBooks.add(bookToSave)
+      savedBooks.push(bookToSave)
       this.#saveBooksInfo(savedBooks)
     } else {
       localStorage.setItem(StorageService.STORAGE_KEY, JSON.stringify([bookToSave]))
     }
+    location.reload()
   }
 
   loadSavedBooks() {
-    const savedBook = localStorage.getItem(StorageService.STORAGE_KEY)
-    return savedBook ? new Set(JSON.parse(savedBook)) : null
+    return JSON.parse(localStorage.getItem(StorageService.STORAGE_KEY) ) 
   }
 
   removeSavedBook(bookToRemove) {
     const savedBooks = this.loadSavedBooks()
     if (!savedBooks) return
-    if (!savedBooks.delete(bookToRemove)) return 
-    this.#saveBooksInfo(savedBooks)
+    const filteredBooks = savedBooks.filter(book => book.id !== bookToRemove.id)
+    this.#saveBooksInfo(filteredBooks)
+    location.reload()
   }
 
 

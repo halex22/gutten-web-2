@@ -1,5 +1,9 @@
-main {
-  padding: 2rem;
+body {
+  padding: 0 2rem;
+}
+
+nav {
+  margin-bottom: 1rem;
 }
 
 #main-container {
@@ -21,9 +25,22 @@ main {
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
 
+
+
 .btn {
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem;
+}
+
+.nav-btn {
+  background-color: #2196F3;
+  color: white;
+  font-size: 1rem;
+  margin-right: 4px;
+}
+
+.nav-btn:hover {
+  background-color: #0072cf;
 }
 
 
@@ -44,4 +61,15 @@ main {
 
 .img-detail-container img {
   object-fit: contain;
+}
+
+.list-name {
+  text-transform: capitalize;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+#detail-root {
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.3);
+  padding: 2px;
 }
