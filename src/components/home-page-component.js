@@ -24,10 +24,11 @@ export default class HomePageComponent{
     for (const book of this.books) {
       const bookInfo = {
         title: book.title,
-        author: book.authors[0],
+        author: book.authors[0].name,
         imgUrl: book.formats['image/jpeg'],
         id: book.id,
       }
+      console.log(bookInfo)
       const bookCard = new BookCardComponent(bookInfo)
       const card = bookCard.createBookCardHtml()
       mainContainer.appendChild(card)

@@ -20,3 +20,28 @@ main {
   align-items: center;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
+
+.btn {
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+
+#detail-root {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.detail-book-info{
+  margin-left: 2rem;
+}
+
+.img-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-detail-container img {
+  object-fit: contain;
+}

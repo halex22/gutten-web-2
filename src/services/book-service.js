@@ -16,18 +16,19 @@ export default class BookService {
   }
 
   getBookById(id){
-    // const url = 
+    return fetch(BookService.BASE_URL + id)
+    .then(res => res.json())
+    .then(data => data)
+    .catch(err => console.error(err))
   }
 
 
   getNextPage(){
-    // controllare che non sia minore di zero 
     this.currentPage++
     return this.getBooksByPage()
   }
 
   getPrevPage(){
-    // controllare che non sia > ultima pagina
     this.currentPage --
     return this.getBooksByPage()
   }
