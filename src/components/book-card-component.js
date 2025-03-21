@@ -33,7 +33,6 @@ export default class BookCardComponent {
   }
 
   createBtnHtml() {
-    console.log(this.bookInfo)
     const container = document.createElement('div')
     container.classList.add('btn-container')
     const btn = document.createElement('button')

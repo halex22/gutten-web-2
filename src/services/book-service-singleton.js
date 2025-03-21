@@ -1,4 +1,4 @@
-let instance
+
 
 
 class BookService {
@@ -6,11 +6,13 @@ class BookService {
   static BASE_URL = 'https://gutendex.com/books/' 
 
   constructor(currentPage=1) {
-    if (instance) throw new Error('book service already instantiated')
+    if (BookService.instance) return BookService.instance
     this.currentPage = currentPage
+    BookService.instance = this
   }
 
   getBooksByPage(){
+    console.log(this.currentPage)
     const url = BookService.BASE_URL +'?page=' + this.currentPage
     return fetch(url)
     .then(res => res.json())
@@ -38,6 +40,6 @@ class BookService {
 
 }
 
-const singletonBookService = new BookService()
-
+const singletonBookService =  new BookService()
+console.log(BookService._instance)
 export default singletonBookService

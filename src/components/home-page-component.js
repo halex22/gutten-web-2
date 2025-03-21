@@ -1,6 +1,7 @@
 import BookCardComponent from "./book-card-component"
 import StorageService from "../services/storage-service"
 import BookService from "../services/book-service"
+import singletonBookService from "../services/book-service-singleton"
 
 export default class HomePageComponent{
 
@@ -10,9 +11,10 @@ export default class HomePageComponent{
    * @param {StorageService} storageService 
    */
   constructor(bookService, storageService){
-    this.bookService = bookService
+    this.bookService = singletonBookService
     this.storageService = storageService
     this.books = []
+    this.other = bookService
   }
 
   async start() {
