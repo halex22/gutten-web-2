@@ -4,6 +4,7 @@
 class BookService {
 
   static BASE_URL = 'https://gutendex.com/books/' 
+  static instance;
 
   constructor(currentPage=1) {
     if (BookService.instance) return BookService.instance
@@ -11,17 +12,21 @@ class BookService {
     BookService.instance = this
   }
 
-  getBooksByPage(){
-    console.log(this.currentPage)
-    const url = BookService.BASE_URL +'?page=' + this.currentPage
+  fetchData(url) {
     return fetch(url)
     .then(res => res.json())
     .then(data => data.results)
     .catch(err => console.error(err))
   }
 
+  getBooksByPage(){
+    console.log(this.currentPage)
+    const url = BookService.BASE_URL +'?page=' + this.currentPage
+    return this.fetchData(url)
+  }
+
   getBookById(id){
-    return fetch(BookService.BASE_URL + id)
+    return fetch(BookService.BASE_URL + '/' + id)
     .then(res => res.json())
     .then(data => data)
     .catch(err => console.error(err))
@@ -38,6 +43,10 @@ class BookService {
     return this.getBooksByPage()
   }
 
+  searchUserQuery(searchQuery, topicQuery) {
+    const url = BookService.BASE_URL + `?search=${searchQuery}&topic=${topicQuery}`
+    return this.fetchData(url)
+  }
 }
 
 const singletonBookService =  new BookService()

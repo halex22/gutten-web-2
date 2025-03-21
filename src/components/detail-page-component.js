@@ -18,6 +18,7 @@ export default class DetailPageComponent {
   }
 
   async start() {
+    console.log(DetailPageComponent.instance)
     this.singleBook = await this.bookService.getBookById(this.bookId)
     this.render()
   }

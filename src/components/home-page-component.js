@@ -15,6 +15,7 @@ export default class HomePageComponent{
     this.storageService = storageService
     this.books = []
     this.other = bookService
+    this.form = document.getElementById('userForm')
   }
 
   async start() {
@@ -23,6 +24,8 @@ export default class HomePageComponent{
 
     const prevBtn = document.getElementById('prev-btn')
     prevBtn.addEventListener('click', () => this.onPrevClick())
+
+    this.form.addEventListener('submit', (event) => this.handleUserSearch(event))
 
     this.books = await this.bookService.getBooksByPage()
     this.render()
@@ -46,6 +49,15 @@ export default class HomePageComponent{
       const card = bookCard.createBookCardHtml()
       mainContainer.appendChild(card)
     }
+  }
+
+  async handleUserSearch(event) {
+    event.preventDefault()
+    const formData = new FormData(this.form)
+    const searchQuery = formData.get('searchQuery')
+    const topicQuery = formData.get('topicQuery')
+    this.books = await this.bookService.searchUserQuery(searchQuery, topicQuery)
+    this.render()
   }
 
 

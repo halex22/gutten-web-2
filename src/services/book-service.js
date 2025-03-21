@@ -6,12 +6,16 @@ export default class BookService {
     this.currentPage = currentPage
   }
 
-  getBooksByPage(){
-    const url = BookService.BASE_URL +'?page=' + this.currentPage
+  fetchData(url) {
     return fetch(url)
     .then(res => res.json())
     .then(data => data.results)
     .catch(err => console.error(err))
+  }
+
+  getBooksByPage(){
+    const url = BookService.BASE_URL +'?page=' + this.currentPage
+    return this.fetchData(url)
   }
 
   getBookById(id){
@@ -32,6 +36,10 @@ export default class BookService {
     return this.getBooksByPage()
   }
 
+  searchUserQuery(searchQuery, topicQuery) {
+    const url = BookService.BASE_URL + `?search=${searchQuery}&topic=${topicQuery}`
+    return this.fetchData(url)
+  }
   
 
 }
